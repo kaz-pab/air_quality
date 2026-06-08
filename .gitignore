@@ -1,0 +1,26 @@
+# python
+.venv/
+__pycache__/
+*.pyc
+test.py
+
+# dbt
+air_quality/target/
+air_quality/dbt_packages/
+air_quality/logs/
+air_quality/.user.yml
+
+# data - too large for github
+data/
+bronze/
+
+# database
+warehouse.db
+warehouse.db.wal
+
+# env
+.venv
+
+# logs
+logs/
+dbt.log

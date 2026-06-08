@@ -1,0 +1,13 @@
+air_quality:
+  outputs:
+    dev:
+      type: duckdb
+      path: D:\Projects\DE_PoC\warehouse.db
+      threads: 1
+
+    prod:
+      type: duckdb
+      path: D:\Projects\DE_PoC\warehouse.db
+      threads: 4
+
+  target: dev

@@ -1,0 +1,11 @@
+version: 2
+
+sources:
+  - name: bronze
+    meta:
+      layer: bronze
+    tables:
+      - name: readings
+        description: "Raw hourly air quality readings, all stations, all pollutants"
+        external:
+          location: "read_parquet('D:/Projects/DE_PoC/bronze/*.parquet')"
