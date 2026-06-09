@@ -24,3 +24,10 @@ warehouse.db.wal
 # logs
 logs/
 dbt.log
+
+# scripts
+*.bat
+
+# frontend
+frontend/node_modules/
+frontend/dist/

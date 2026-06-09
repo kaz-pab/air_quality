@@ -75,35 +75,35 @@ def ingest_file(filepath, year, pollutant):
     df_long = df_long.dropna(subset=["value"])
     return df_long
 
-    # first column is timestamp
-    df = df.rename(columns={df.columns[0]: "timestamp"})
+    # # first column is timestamp
+    # df = df.rename(columns={df.columns[0]: "timestamp"})
 
-    # drop rows where timestamp is not a datetime (stray metadata rows)
-    print(df["timestamp"].head(10).tolist())
-    df = df[pd.to_datetime(df["timestamp"], errors="coerce").notna()]
-    df["timestamp"] = pd.to_datetime(df["timestamp"])
+    # # drop rows where timestamp is not a datetime (stray metadata rows)
+    # print(df["timestamp"].head(10).tolist())
+    # df = df[pd.to_datetime(df["timestamp"], errors="coerce").notna()]
+    # df["timestamp"] = pd.to_datetime(df["timestamp"])
 
-    # melt wide -> long
-    station_cols = [c for c in df.columns if c != "timestamp"]
-    df_long = df.melt(
-        id_vars=["timestamp"],
-        value_vars=station_cols,
-        var_name="station_code",
-        value_name="value",
-    )
+    # # melt wide -> long
+    # station_cols = [c for c in df.columns if c != "timestamp"]
+    # df_long = df.melt(
+    #     id_vars=["timestamp"],
+    #     value_vars=station_cols,
+    #     var_name="station_code",
+    #     value_name="value",
+    # )
 
-    # drop nulls - sparse is fine in bronze but nulls are useless rows
-    df_long = df_long.dropna(subset=["value"])
+    # # drop nulls - sparse is fine in bronze but nulls are useless rows
+    # df_long = df_long.dropna(subset=["value"])
 
-    # tag with pollutant and year
-    df_long["pollutant"] = pollutant
-    df_long["year"] = year
+    # # tag with pollutant and year
+    # df_long["pollutant"] = pollutant
+    # df_long["year"] = year
 
-    # cast value to float, drop values that failed to_numeric
-    df_long["value"] = pd.to_numeric(df_long["value"], errors="coerce")
-    df_long = df_long.dropna(subset=["value"])
+    # # cast value to float, drop values that failed to_numeric
+    # df_long["value"] = pd.to_numeric(df_long["value"], errors="coerce")
+    # df_long = df_long.dropna(subset=["value"])
 
-    return df_long
+    # return df_long
 
 def main():
     BRONZE_DIR.mkdir(parents=True, exist_ok=True)
